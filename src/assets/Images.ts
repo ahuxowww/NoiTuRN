@@ -1,3 +1,3 @@
 export const images = {
-    thumbnail: require('./images/thumbnail.jpeg'),
+    thumbnail: require('./images/Thumbnail.jpeg'),
 }
