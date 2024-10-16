@@ -1,6 +1,5 @@
 import React, {useCallback} from 'react';
-import {FlatList, Image, Pressable, StyleSheet, Text, View} from 'react-native';
-import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import {FlatList, Image, StyleSheet, Text, View} from 'react-native';
 
 import Container from '../../components/Container';
 import {SafeAreaView} from 'react-native-safe-area-context';
@@ -8,18 +7,32 @@ import LinearGradient from 'react-native-linear-gradient';
 import {Images} from '../../assets';
 import Fonts from '../../assets/Fonts';
 import Button from '../../components/Button';
-import Header from '../../components/Header';
 import {useNavigation} from '@react-navigation/native';
-import CounterTimer from '../../components/CounterTimer';
 
-const Game = () => {
+interface Button {
+  label: string;
+}
+
+const listButton: Button[] = [
+  {label: 'Vua tiếng việt'},
+  {label: 'Cheater'},
+  {label: 'Cheater VTV'},
+  {label: 'EngLish'},
+];
+
+const Home = () => {
   const navigation = useNavigation();
-  const customBack = useCallback(() => {
-    return <FontAwesome name="home" size={24} color="white" />;
+  const renderListButton = useCallback(({item, index}: any) => {
+    return (
+      <View
+        style={[styles.buttonNormal, index % 2 === 0 ? {marginRight: 8} : {}]}>
+        <Button label={item?.label} onPress={() => {}} />
+      </View>
+    );
   }, []);
 
-  const onGoHome = useCallback(() => {
-    navigation.navigate('Home');
+  const onNavToGame = useCallback(() => {
+    navigation.navigate('Game');
   }, [navigation]);
 
   return (
@@ -34,14 +47,19 @@ const Game = () => {
         useAngle
         angle={140}>
         <SafeAreaView>
-          <Header
-            isBack
-            customBack={customBack}
-            title="123"
-            onGoBackButton={onGoHome}
-          />
-          <View style={styles.contentTimer}>
-            <CounterTimer time={10} />
+          <Text style={styles.textTitle}>Nối từ không ?</Text>
+          <View style={styles.content}>
+            <View style={styles.thumnailContainer}>
+              <Image source={Images.thumbnail} style={styles.thumnail} />
+            </View>
+            <View style={styles.buttonContainer}>
+              <Button label="Chơi ngay" onPress={onNavToGame} bigButton />
+            </View>
+            <FlatList
+              data={listButton}
+              renderItem={renderListButton}
+              numColumns={2}
+            />
           </View>
         </SafeAreaView>
       </LinearGradient>
@@ -79,9 +97,6 @@ const styles = StyleSheet.create({
   buttonNormal: {
     marginTop: 12,
   },
-  contentTimer: {
-    marginTop: 16,
-  },
 });
 
-export default Game;
+export default Home;
