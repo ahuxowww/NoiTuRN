@@ -45,10 +45,10 @@
 		59597D08170EC79FD1C79F79 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; name = PrivacyInfo.xcprivacy; path = StaffRes/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		5B7EB9410499542E8C5724F5 /* Pods-StaffRes-StaffResTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StaffRes-StaffResTests.debug.xcconfig"; path = "Target Support Files/Pods-StaffRes-StaffResTests/Pods-StaffRes-StaffResTests.debug.xcconfig"; sourceTree = "<group>"; };
 		5DCACB8F33CDC322A6C60F78 /* libPods-StaffRes.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-StaffRes.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6469F8E48F704FECACE38457 /* PatrickHand-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "PatrickHand-Regular.ttf"; path = "../src/assets/font/PatrickHand-Regular.ttf"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = StaffRes/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		89C6BE57DB24E9ADA2F236DE /* Pods-StaffRes-StaffResTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StaffRes-StaffResTests.release.xcconfig"; path = "Target Support Files/Pods-StaffRes-StaffResTests/Pods-StaffRes-StaffResTests.release.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
-		6469F8E48F704FECACE38457 /* PatrickHand-Regular.ttf */ = {isa = PBXFileReference; name = "PatrickHand-Regular.ttf"; path = "../src/assets/font/PatrickHand-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +113,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		2FBC80003F504266A7360457 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				6469F8E48F704FECACE38457 /* PatrickHand-Regular.ttf */,
+			);
+			name = Resources;
+			path = "";
+			sourceTree = "<group>";
+		};
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
@@ -155,15 +164,6 @@
 			);
 			path = Pods;
 			sourceTree = "<group>";
-		};
-		2FBC80003F504266A7360457 /* Resources */ = {
-			isa = "PBXGroup";
-			children = (
-				6469F8E48F704FECACE38457 /* PatrickHand-Regular.ttf */,
-			);
-			name = Resources;
-			sourceTree = "<group>";
-			path = "";
 		};
 /* End PBXGroup section */
 

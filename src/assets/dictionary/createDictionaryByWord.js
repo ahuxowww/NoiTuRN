@@ -6,13 +6,14 @@ fs.readFile(
   'utf8',
   (err, data) => {
     if (err) {
-      console.error('Lỗi khi đọc file:', err);
       return;
     }
 
     const dictionary = JSON.parse(data);
 
     let sortedWords = {};
+
+    let firstWords = [];
 
     dictionary.forEach(item => {
       if (item?.text?.includes(' ')) {
@@ -21,6 +22,15 @@ fs.readFile(
           sortedWords[firstWord] = [];
         }
         sortedWords[firstWord].push(item?.text);
+
+        // Add first word to firstWords
+        if (
+          !firstWords?.includes(firstWord) &&
+          firstWord?.length > 2 &&
+          !firstWord?.includes('-')
+        ) {
+          firstWords.push(firstWord);
+        }
       }
     });
 
@@ -30,10 +40,19 @@ fs.readFile(
       'utf8',
       err => {
         if (err) {
-          console.error('Lỗi khi ghi file:', err);
           return;
         }
-        console.log('File đã được phân loại và lưu thành công!');
+      },
+    );
+
+    fs.writeFile(
+      '/Users/user/NoiTu/src/assets/dictionary/outwords.json',
+      JSON.stringify(firstWords, null, 2),
+      'utf8',
+      err => {
+        if (err) {
+          return;
+        }
       },
     );
   },
