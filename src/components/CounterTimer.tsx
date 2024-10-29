@@ -7,7 +7,7 @@ interface Props {
 }
 
 const CountdownTimer: FC<Props> = ({time}) => {
-  const [count, setCount] = useState(time ? time : 10);
+  const [count, setCount] = useState(time ?? 10);
 
   useEffect(() => {
     if (count > 0) {

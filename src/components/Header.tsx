@@ -3,6 +3,7 @@ import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import Fonts from '../assets/Fonts';
 
 interface Props {
   isBack?: boolean;
@@ -45,7 +46,7 @@ const Header: FC<Props> = ({
       )}
       {title ? (
         <View style={styles.contentCenter}>
-          <Text>{title}</Text>
+          <Text style={styles.titleText}>{title}</Text>
         </View>
       ) : (
         <View />
@@ -95,6 +96,11 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  titleText: {
+    fontSize: 14,
+    lineHeight: 18,
+    fontFamily: Fonts.fontFamilyCustom.PatrickHandRegular,
   },
 });
 

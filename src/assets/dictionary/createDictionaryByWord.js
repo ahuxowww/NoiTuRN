@@ -2,7 +2,7 @@ const fs = require('fs');
 
 // Đọc file JSON
 fs.readFile(
-  '/Users/user/NoiTu/src/assets/dictionary/dictionary.json',
+  'c:/Users/Admin/StaffRes/src/assets/dictionary/dictionary.json',
   'utf8',
   (err, data) => {
     if (err) {
@@ -35,7 +35,7 @@ fs.readFile(
     });
 
     fs.writeFile(
-      '/Users/user/NoiTu/src/assets/dictionary/outdictionary.json',
+      'c:/Users/Admin/StaffRes/src/assets/dictionary/outdictionary.json',
       JSON.stringify(sortedWords, null, 2),
       'utf8',
       err => {
@@ -46,7 +46,7 @@ fs.readFile(
     );
 
     fs.writeFile(
-      '/Users/user/NoiTu/src/assets/dictionary/outwords.json',
+      'c:/Users/Admin/StaffRes/src/assets/dictionary/outwords.json',
       JSON.stringify(firstWords, null, 2),
       'utf8',
       err => {

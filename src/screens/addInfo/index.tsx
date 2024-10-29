@@ -13,8 +13,7 @@ import Button from '../../components/Button';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {useDispatch} from 'react-redux';
 import {saveName} from '../../feature/user/userSlice';
-
-const Game = () => {
+const AddInfo = () => {
   const navigation = useNavigation();
   const [value, setValue] = React.useState('');
   const dispatch = useDispatch();
@@ -49,7 +48,7 @@ const Game = () => {
           <Header
             isBack
             customBack={customBack}
-            title="Nối từ"
+            title="Nhập tên"
             onGoBackButton={onGoHome}
           />
           <View style={styles.contentTimer}>
@@ -61,7 +60,7 @@ const Game = () => {
               <TextInput
                 value={value}
                 onChangeText={onChangeText}
-                placeholder="Nhập câu trả lời"
+                placeholder="Nhập tên của bạn"
               />
               <View
                 style={{
@@ -114,4 +113,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Game;
+export default AddInfo;
