@@ -1,4 +1,4 @@
-import React, {useCallback} from 'react';
+import React, {useCallback, useEffect} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
@@ -11,13 +11,28 @@ import CounterTimer from '../../components/CounterTimer';
 import TextInput from '../../components/TextInput';
 import Button from '../../components/Button';
 import {SafeAreaView} from 'react-native-safe-area-context';
-import {useDispatch} from 'react-redux';
-import {saveName} from '../../feature/user/userSlice';
+import {
+  capitalizeFirstLetter,
+  checkCorrectAnswer,
+  getRandomString,
+} from '../../util';
 
 const Game = () => {
   const navigation = useNavigation();
   const [value, setValue] = React.useState('');
-  const dispatch = useDispatch();
+  const [string, setString] = React.useState('');
+  const timerRef = React.useRef(null);
+
+  useEffect(() => {
+    setString(getRandomString());
+  }, []);
+
+  const handleReset = useCallback(() => {
+    if (timerRef.current) {
+      timerRef?.current?.resetTimer();
+    }
+  }, []);
+
   const customBack = useCallback(() => {
     return <FontAwesome name="home" size={24} color="white" />;
   }, []);
@@ -31,8 +46,12 @@ const Game = () => {
   }, [navigation]);
 
   const onSubmit = useCallback(() => {
-    dispatch(saveName(value));
-  }, [dispatch, value]);
+    const checkAnswer = checkCorrectAnswer(string, value);
+    console.log(checkAnswer,"checkAnswer");
+    // handleReset();
+  }, [string, value]);
+
+  const onEnd = useCallback(() => {}, []);
 
   return (
     <Container
@@ -53,9 +72,11 @@ const Game = () => {
             onGoBackButton={onGoHome}
           />
           <View style={styles.contentTimer}>
-            <CounterTimer time={0} />
+            <CounterTimer ref={timerRef} time={10} onEnd={onEnd} />
             <View style={styles.content}>
-              <Text></Text>
+              <Text style={styles.titleText}>
+                Từ : {capitalizeFirstLetter(string)}
+              </Text>
             </View>
             <View>
               <TextInput
@@ -86,6 +107,7 @@ const styles = StyleSheet.create({
   content: {
     alignItems: 'center',
     justifyContent: 'center',
+    marginBottom: 24,
   },
   thumnailContainer: {
     padding: 10,
@@ -111,6 +133,11 @@ const styles = StyleSheet.create({
   },
   contentTimer: {
     marginTop: 16,
+  },
+  titleText: {
+    fontSize: 20,
+    lineHeight: 26,
+    fontFamily: Fonts.fontFamilyCustom.PatrickHandRegular,
   },
 });
 

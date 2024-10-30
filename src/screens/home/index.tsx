@@ -32,7 +32,7 @@ const Home = () => {
   }, []);
 
   const onNavToGame = useCallback(() => {
-    navigation.navigate('Game');
+    navigation.navigate('GameStack');
   }, [navigation]);
 
   return (

@@ -1,12 +1,12 @@
 import {createSlice} from '@reduxjs/toolkit';
 import type {PayloadAction} from '@reduxjs/toolkit';
 
-export interface CounterState {
+export interface userState {
   name: string;
   point: number;
 }
 
-const initialState: CounterState = {
+const initialState: userState = {
   name: '',
   point: 0,
 };

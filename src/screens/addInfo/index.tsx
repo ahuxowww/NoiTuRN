@@ -31,7 +31,8 @@ const AddInfo = () => {
 
   const onSubmit = useCallback(() => {
     dispatch(saveName(value));
-  }, [dispatch, value]);
+    navigation.navigate('Game');
+  }, [dispatch, navigation, value]);
 
   return (
     <Container
