@@ -16,12 +16,17 @@ import {
   checkCorrectAnswer,
   getRandomString,
 } from '../../util';
+import {useDispatch, useSelector} from 'react-redux';
+import {addPoint, subPoint, userInfo} from '../../feature/user/userSlice';
 
 const Game = () => {
-  const navigation = useNavigation();
+  const navigation = useNavigation<any>();
   const [value, setValue] = React.useState('');
   const [string, setString] = React.useState('');
+  const [pause, setPause] = React.useState(false);
   const timerRef = React.useRef(null);
+  const dispatch = useDispatch();
+  const userInfomation = useSelector(userInfo);
 
   useEffect(() => {
     setString(getRandomString());
@@ -30,7 +35,9 @@ const Game = () => {
   const handleReset = useCallback(() => {
     if (timerRef.current) {
       timerRef?.current?.resetTimer();
+      setString(getRandomString());
     }
+    setValue('');
   }, []);
 
   const customBack = useCallback(() => {
@@ -46,12 +53,24 @@ const Game = () => {
   }, [navigation]);
 
   const onSubmit = useCallback(() => {
-    const checkAnswer = checkCorrectAnswer(string, value);
-    console.log(checkAnswer,"checkAnswer");
-    // handleReset();
-  }, [string, value]);
+    if (pause) {
+      handleReset();
+    } else {
+      const checkAnswer = checkCorrectAnswer(string, value);
+      if (checkAnswer) {
+        dispatch(addPoint());
+      } else {
+        dispatch(subPoint());
+      }
+      handleReset();
+    }
+  }, [dispatch, handleReset, pause, string, value]);
 
-  const onEnd = useCallback(() => {}, []);
+  const onEnd = useCallback(() => {
+    dispatch(subPoint());
+    setValue('');
+    setPause(true);
+  }, [dispatch]);
 
   return (
     <Container
@@ -72,6 +91,12 @@ const Game = () => {
             onGoBackButton={onGoHome}
           />
           <View style={styles.contentTimer}>
+            <View
+              style={{marginBottom: 24, marginTop: 12, alignItems: 'center'}}>
+              <Text style={styles.titleText}>
+                Điểm: {userInfomation?.point}
+              </Text>
+            </View>
             <CounterTimer ref={timerRef} time={10} onEnd={onEnd} />
             <View style={styles.content}>
               <Text style={styles.titleText}>
@@ -86,11 +111,14 @@ const Game = () => {
               />
               <View
                 style={{
-                  marginTop: 100,
+                  marginTop: 60,
                   alignItems: 'center',
                   justifyContent: 'center',
                 }}>
-                <Button onPress={onSubmit} label="Xác nhận" />
+                <Button
+                  onPress={onSubmit}
+                  label={pause ? 'Tiếp tục' : 'Xác nhận'}
+                />
               </View>
             </View>
           </View>
@@ -135,8 +163,8 @@ const styles = StyleSheet.create({
     marginTop: 16,
   },
   titleText: {
-    fontSize: 20,
-    lineHeight: 26,
+    fontSize: 28,
+    lineHeight: 34,
     fontFamily: Fonts.fontFamilyCustom.PatrickHandRegular,
   },
 });

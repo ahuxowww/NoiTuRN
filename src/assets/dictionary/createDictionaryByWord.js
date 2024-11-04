@@ -18,10 +18,11 @@ fs.readFile(
     dictionary.forEach(item => {
       if (item?.text?.includes(' ')) {
         const firstWord = item?.text?.split(' ')[0]?.toLowerCase();
+        const lastWord = item?.text?.split(' ')[1]?.toLowerCase();
         if (!sortedWords[firstWord]) {
           sortedWords[firstWord] = [];
         }
-        sortedWords[firstWord].push(item?.text);
+        sortedWords[firstWord].push(lastWord);
 
         // Add first word to firstWords
         if (

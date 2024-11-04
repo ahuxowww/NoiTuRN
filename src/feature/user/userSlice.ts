@@ -19,10 +19,10 @@ export const userSlice = createSlice({
       state.name = action.payload;
     },
     addPoint: state => {
-      state.point += 1;
+      state.point += 10;
     },
     subPoint: state => {
-      state.point -= 1;
+      state.point = state.point - 5 > 0 ? state.point - 5 : 0;
     },
   },
 });

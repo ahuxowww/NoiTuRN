@@ -2,7 +2,6 @@ import data from '../assets/dictionary/outwords.json';
 import dataArray from '../assets/dictionary/outdictionary.json';
 
 export const getRandomString = () => {
-  console.log(data?.length);
   const randomIndex = Math.floor(Math.random() * data.length);
   return data[randomIndex];
 };
@@ -26,6 +25,5 @@ export const checkCorrectAnswer = (str: string, aws: string): boolean => {
   if (!dataArrayForString || !Array.isArray(dataArrayForString)) {
     return false;
   }
-console.log(dataArrayForString, awsLower)
   return dataArrayForString.includes(awsLower);
 };
